@@ -45,7 +45,7 @@ Contributors helping to review/merge pull requests:
 	`docker build . -t <image_name>`
 4. Run the following command to create reports freeze or black detection for video files in your test folder
 	
-	`docker run -v <test_directory>:/mnt -v <reports_directory>:/mnt -it --rm <image_name> ./ut/<freeze_detect_fsm.sh/black_detect.sh> /mnt`
+	`docker run -v <test_directory>:/data/input -v <reports_directory>:/data/output -it --rm <image_name> ./ut/<freeze_detect_fsm.sh/black_detect.sh> /data/input /data/output`
 	* test_directory - directory with videos to be checked
 	* reports_directory - directory in which the reports are to be generated
 	* image_name - name of image created in previous step
