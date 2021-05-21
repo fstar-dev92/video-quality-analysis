@@ -1,6 +1,4 @@
-<p align="center">
-#Bageera
-</p>
+<h1 align="center">Bageera</h1>
 <p align="center">
   <strong>Black and Freeze Detection</strong>
 </p>
@@ -44,13 +42,14 @@ Contributors helping to review/merge pull requests:
 1. Clone this repository 
 2. Go to Bageera directory
 3. Create docker image using following command
-	sudo docker build . -t <image_name>
+	`docker build . -t <image_name>`
 4. Run the following command to create reports freeze or black detection for video files in your test folder
-	sudo docker run -v <test_directory>:/mnt -v <reports_directory>:/mnt -it --rm <image_name> ./ut/<freeze/black file> /mnt
-	test_directory - directory with videos to be checked
-	reports_directory - directory in which the reports are to be generated
-	image_name - name of image created in previous step
-	freeze/black file 
-		for freeze detection : freeze_detect_fsm.sh
-		for black detection : black_detect.sh
+	
+	`docker run -v <test_directory>:/mnt -v <reports_directory>:/mnt -it --rm <image_name> ./ut/<freeze_detect_fsm.sh/black_detect.sh> /mnt`
+	* test_directory - directory with videos to be checked
+	* reports_directory - directory in which the reports are to be generated
+	* image_name - name of image created in previous step
+	* freeze/black file 
+		* for freeze detection : freeze_detect_fsm.sh
+		* for black detection : black_detect.sh
 		
