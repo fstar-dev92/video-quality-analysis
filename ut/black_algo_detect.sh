@@ -13,8 +13,9 @@ printf "File Name , is_black\n" >$epoch
 for filename in $(find $folder_name -type f | grep -E "\.png$|\.jpg$")
 do
     echo filename $filename
-    echo "ffmpeg -i $filename -pix_fmt yuv420p -f rawvideo  -s 1280x720 - | $(dirname $0)/../bin/amg_video_black_detect_algo_ut /dev/stdin 1280 720 40 0 1 $epoch $filename"
-    ffmpeg -i $filename -pix_fmt yuv420p -f rawvideo  -s 1280x720  - | $(dirname $0)/../bin/amg_video_black_detect_algo_ut /dev/stdin 1280 720 40 0 1 $epoch $filename 
+    . ./set_params.sh $filename
+    echo "ffmpeg -i "$filename" -pix_fmt "$pix_fmt" -f rawvideo  -s "$width"x"$height" - | $(dirname $0)/../bin/amg_video_black_detect_ut_fsm /dev/stdin "$width" "$height" "$frame_rate" 0 1 "$epoch" "$filename""
+    ffmpeg -i "$filename" -pix_fmt "$pix_fmt" -f rawvideo  -s "$width"x"$height" - | $(dirname $0)/../bin/amg_video_black_detect_ut_fsm /dev/stdin "$width" "$height" "$frame_rate" 0 1 "$epoch" "$filename"
 done
 
 epoch=$epoch1$epoch3
@@ -23,6 +24,7 @@ printf "File Name , is_black\n" >$epoch
 for filename in $(find $folder_name -type f | grep -E "\.png$|\.jpg$")
 do
     echo filename $filename
-    echo "ffmpeg -i $filename -pix_fmt yuv420p -f rawvideo  -s 1280x720 - | $(dirname $0)/../bin/amg_video_black_detect_algo_ut /dev/stdin 1280 720 40 40 1 $epoch $filename"
-    ffmpeg -i $filename -pix_fmt yuv420p -f rawvideo  -s 1280x720  - | $(dirname $0)/../bin/amg_video_black_detect_algo_ut /dev/stdin 1280 720 40 40 1 $epoch $filename 
+    . ./set_params.sh $filename
+    echo "ffmpeg -i "$filename" -pix_fmt "$pix_fmt" -f rawvideo  -s "$width"x"$height" - | $(dirname $0)/../bin/amg_video_black_detect_ut_fsm /dev/stdin "$width" "$height" "$frame_rate" 40 1 "$epoch" "$filename""
+    ffmpeg -i "$filename" -pix_fmt "$pix_fmt" -f rawvideo  -s "$width"x"$height" - | $(dirname $0)/../bin/amg_video_black_detect_ut_fsm /dev/stdin "$width" "$height" "$frame_rate" 40 1 "$epoch" "$filename"
 done
