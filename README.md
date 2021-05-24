@@ -44,8 +44,12 @@ Bageera is a project which provides following functionalities :
 
 ##Optimization of Bageera
 
-* 
-
+* Skip_line parameter is used to skip few lines for each horizontal line processed in each frame to reduce computation.
+* ROI (Region Of Interest) is set to full screen.
+* Threshold of 120 ms is used to get out of freeze or black state when non-freeze or non-black frames are observed respectively. 
+* Updation of reference frame is changed to detect slow changes (eg: slow motion videos) in freeze.
+* FSM (Finite State Machine) is used to manage states in black and freeze.
+* Slice based detection is used in black to detect small non-black part (eg: credits, logo, fade in, fade out  etc..) in a frame.
 
 ## How to run locally
 
