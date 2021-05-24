@@ -42,7 +42,7 @@ Bageera is a project which provides following functionalities :
     * If black persists for a certain period of time (black_threshold) then the video clip is considered as black.
     * Report generated contains the details of video_file_name, Start pts (ns), End pts (ns), Duration (ms).
 
-##Optimization of Bageera
+## Optimization of Bageera
 
 * Skip_line parameter is used to skip few lines for each horizontal line processed in each frame to reduce computation.
 * ROI (Region Of Interest) is set to full screen.
