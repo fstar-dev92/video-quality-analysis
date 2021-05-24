@@ -12,7 +12,7 @@ folder_name=$1
 for filename in $(find "$folder_name" -type f | grep -E "\.ts$|\.mp4$")
 do
     echo filename "$filename"
-    . ./set_params.sh $filename
+    . ./$(dirname $0)/set_params.sh $filename
     if [ $pix_fmt = yuv420p ]
     then
         pixel_format="i420"

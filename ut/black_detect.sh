@@ -8,12 +8,12 @@ fi
 report_name=$2"/"`date +%s`"_black.csv"
 
 folder_name=$1
-printf "File Name , Start pts , End pts , Duration(in ms)\n" >$epoch
+printf "File Name , Start pts , End pts , Duration(in ms)\n" >$report_name
 for filename in $(find "$folder_name" -type f | grep -E "\.ts$|\.mp4$")
 do
     echo filename "$filename"
-    echo EPOCH $epoch
-    . ./set_params.sh $filename
+    echo report_name $report_name
+    . ./$(dirname $0)/set_params.sh $filename
     if [ $pix_fmt = yuv420p ]
     then
         pixel_format="i420"
