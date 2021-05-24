@@ -10,9 +10,9 @@ int main(int argc, char *argv[])
     FILE *Fin;
     FILE *Fout;
 
-    if (argc < 9)
+    if (argc < 8)
     {
-        printf("Usage: %s <infile> <wo> <ho> <pts_interval_ms> <skip_roi> <skip_line> <video_file_name>\n", argv[0]);
+        printf("Usage: %s <infile> <wo> <ho> <skip_roi> <skip_line> <video_file_name>\n", argv[0]);
         exit(1);
     }
 
@@ -26,13 +26,12 @@ int main(int argc, char *argv[])
 
     int wo = atoi(argv[2]);
     int ho = atoi(argv[3]);
-    double pts_interval_ms = atof(argv[4]);
-    int skip_roi = atoi(argv[5]);
-    int skip_line = atoi(argv[6]);
+    int skip_roi = atoi(argv[4]);
+    int skip_line = atoi(argv[5]);
     char video_file[1024]; 
     char file[32];
-    strcpy(file,argv[7]);
-    strcpy(video_file,argv[8]);
+    strcpy(file,argv[6]);
+    strcpy(video_file,argv[7]);
     FILE *f1=fopen(file,"a");
 
     AmgErrorLogParams black_params;

@@ -14,8 +14,8 @@ for filename in $(find $folder_name -type f | grep -E "\.png$|\.jpg$")
 do
     echo filename $filename
     . ./set_params.sh $filename
-    echo "ffmpeg -i "$filename" -pix_fmt "$pix_fmt" -f rawvideo  -s "$width"x"$height" - | $(dirname $0)/../bin/amg_video_black_detect_ut_fsm /dev/stdin "$width" "$height" "$frame_rate" 0 1 16 "$epoch" "$filename""
-    ffmpeg -i "$filename" -pix_fmt "$pix_fmt" -f rawvideo  -s "$width"x"$height" - | $(dirname $0)/../bin/amg_video_black_detect_ut_fsm /dev/stdin "$width" "$height" "$frame_rate" 0 1 16 "$epoch" "$filename"
+    echo "ffmpeg -i "$filename" -pix_fmt "$pix_fmt" -f rawvideo  -s "$width"x"$height" - | $(dirname $0)/../bin/amg_video_black_detect_algo_ut /dev/stdin "$width" "$height" 0 1 16 "$epoch" "$filename""
+    ffmpeg -i "$filename" -pix_fmt "$pix_fmt" -f rawvideo  -s "$width"x"$height" - | $(dirname $0)/../bin/amg_video_black_detect_algo_ut /dev/stdin "$width" "$height" 0 1 16 "$epoch" "$filename"
 done
 
 epoch=$epoch1$epoch3
@@ -25,6 +25,6 @@ for filename in $(find $folder_name -type f | grep -E "\.png$|\.jpg$")
 do
     echo filename $filename
     . ./set_params.sh $filename
-    echo "ffmpeg -i "$filename" -pix_fmt "$pix_fmt" -f rawvideo  -s "$width"x"$height" - | $(dirname $0)/../bin/amg_video_black_detect_ut_fsm /dev/stdin "$width" "$height" "$frame_rate" 40 1 16 "$epoch" "$filename""
-    ffmpeg -i "$filename" -pix_fmt "$pix_fmt" -f rawvideo  -s "$width"x"$height" - | $(dirname $0)/../bin/amg_video_black_detect_ut_fsm /dev/stdin "$width" "$height" "$frame_rate" 40 1 16 "$epoch" "$filename"
+    echo "ffmpeg -i "$filename" -pix_fmt "$pix_fmt" -f rawvideo  -s "$width"x"$height" - | $(dirname $0)/../bin/amg_video_black_detect_algo_ut /dev/stdin "$width" "$height" 40 1 16 "$epoch" "$filename""
+    ffmpeg -i "$filename" -pix_fmt "$pix_fmt" -f rawvideo  -s "$width"x"$height" - | $(dirname $0)/../bin/amg_video_black_detect_algo_ut /dev/stdin "$width" "$height" 40 1 16 "$epoch" "$filename"
 done

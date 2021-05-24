@@ -10,4 +10,3 @@ height=`ffprobe  -select_streams v:0  -show_entries program_stream=height -of de
 pix_fmt=`ffprobe  -select_streams v:0  -show_entries program_stream=pix_fmt -of default=nw=1:nk=1 $1`
 IFS="/" read -a arr <<< `ffprobe  -select_streams v:0  -show_entries program_stream=r_frame_rate -of default=nw=1:nk=1 $1`
 pts_interval=`printf %.6f "$((10**6 * 1000 * ${arr[1]} / ${arr[0]}))e-6"`
-echo $pts_interval
