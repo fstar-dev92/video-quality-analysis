@@ -7,6 +7,7 @@ fi
 
 report_name=$2"/"`date +%s`"_freeze_fsm.csv"
 pix_fmt="yuv420p"
+pixel_format="i420"
 printf "File Name , Start pts , End pts , Duration (in ms)\n" >$report_name
 folder_name=$1
 for filename in $(find "$folder_name" -type f | grep -E "\.ts$|\.mp4$")
