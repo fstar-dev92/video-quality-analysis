@@ -29,6 +29,8 @@ Contributors helping to review/merge pull requests:
 - [@BVS](https://github.com/bvs-amagi)
 - [@Swapnil](https://github.com/swapnild18)
 - [@Hamza](https://github.com/hamza-u)
+- [@Islam]()
+
 
 ## How Bageera works
 
@@ -68,4 +70,14 @@ Bageera is a project which provides following functionalities :
 		* for black detection : black_detect.sh
     * freeze threshold - no of milliseconds freeze should be shown
     * black threshold  - no of milliseconds black should be shown
-		
+	
+## Getting started
+
+Below are few commands to generate reports on videos in ./ut/test folder with bageera as current working directory
+
+* docker build . -t sample_image 
+* #To generate freeze report on the video files in test folder
+* docker run -v $PWD/ut/test:/data/input -v $PWD/ut/:/data/output -it --rm sample_image $PWD/ut/freeze_detect_fsm.sh /data/input /data/output 1000
+* #To generate black report on the video files in test folder
+* docker run -v $PWD/ut/test:/data/input -v $PWD/ut/:/data/output -it --rm sample_image $PWD/ut/black_detect.sh /data/input /data/output 1000
+
