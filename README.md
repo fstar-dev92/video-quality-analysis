@@ -62,22 +62,23 @@ Bageera is a project which provides following functionalities :
 4. Run the following command to create reports freeze or black detection for video files in your test folder
 	
 	`docker run -v <test_directory>:/data/input -v <reports_directory>:/data/output -it --rm <image_name> ./ut/<freeze_detect_fsm.sh/black_detect.sh> /data/input /data/output <black/freeze threshold>`
-	* test_directory - directory with videos to be checked
-	* reports_directory - directory in which the reports are to be generated
+	* test_directory - absolute path of directory with videos to be checked
+	* reports_directory - absolute path of directory in which the reports are to be generated
 	* image_name - name of image created in previous step
 	* freeze/black file 
 		* for freeze detection : freeze_detect_fsm.sh
 		* for black detection : black_detect.sh
-    * freeze threshold - no of milliseconds freeze should be shown
-    * black threshold  - no of milliseconds black should be shown
+    * freeze threshold - minimum amount of freeze to be detected in milliseconds
+    * black threshold  - minimum amount of black to be detected in milliseconds
 	
 ## Getting started
 
-Below are few commands to generate reports on videos in ./ut/test folder with bageera as current working directory
+Below are few commands to generate reports on videos in bageera/ut/test folder
 
+* #create a folder named "output" in the current working directory to generate reports in it.
 * docker build . -t sample_image 
 * #To generate freeze report on the video files in test folder
-* docker run -v $PWD/ut/test:/data/input -v $PWD/ut/:/data/output -it --rm sample_image $PWD/ut/freeze_detect_fsm.sh /data/input /data/output 1000
+* docker run -v $PWD/output/:/data/output -it --rm sample_image ./ut/freeze_detect_fsm.sh ./ut/test /data/output 1000
 * #To generate black report on the video files in test folder
-* docker run -v $PWD/ut/test:/data/input -v $PWD/ut/:/data/output -it --rm sample_image $PWD/ut/black_detect.sh /data/input /data/output 1000
+* docker run -v $PWD/output/:/data/output -it --rm sample_image ./ut/black_detect.sh ./ut/test /data/output 1000
 
