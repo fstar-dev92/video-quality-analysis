@@ -67,6 +67,7 @@ AmgErrorStatus amg_video_freeze_algo_detect(void *handle, amg_video_freeze_algo_
     Ipp64f rmse_freeze_y;
     Ipp64f rmse_freeze_u;
     Ipp64f rmse_freeze_v;
+    int error_code;
     IppiSize roi_size_freeze = {params->roi_freeze.w, params->roi_freeze.h / amg_video_freeze_algo->line_distance_y};
 
     /*rmse for freeze detection is calculated as, rmse(t)=ld_2(t)/\sqrt{|I(t)|}
@@ -74,8 +75,8 @@ AmgErrorStatus amg_video_freeze_algo_detect(void *handle, amg_video_freeze_algo_
 
     int offset_freeze   = (params->roi_freeze.y + amg_video_freeze_algo->line_offset) * params->wo + params->roi_freeze.x;
     
-    ippiNormDiff_L2_8u_C1R(params->in_image + offset_freeze, params->wo * amg_video_freeze_algo->line_distance_y, params->old_image + offset_freeze,
-            params->wo * amg_video_freeze_algo->line_distance_y, roi_size_freeze, &l2_diff_y);
+    ippiNormDiff_L2_8u_C1R_Enhanced(params->in_image + offset_freeze, params->wo * amg_video_freeze_algo->line_distance_y, params->old_image + offset_freeze,
+            params->wo * amg_video_freeze_algo->line_distance_y, roi_size_freeze, &l2_diff_y, &error_code);
     rmse_freeze_y = l2_diff_y / (denom_freeze);
     if(params->color_type == FORMAT_I420)
     {
@@ -84,12 +85,12 @@ AmgErrorStatus amg_video_freeze_algo_detect(void *handle, amg_video_freeze_algo_
         IppiSize roi_size_freeze_uv = {params->roi_freeze.w / 2, (params->roi_freeze.h / 2) / amg_video_freeze_algo->line_distance_uv};
         int offset_freeze_u   = params->wo * params->ho + ((params->roi_freeze.y+ amg_video_freeze_algo->line_offset) / 2) * (params->wo / 2) + params->roi_freeze.x / 2;
         int offset_freeze_v   = params->wo * params->ho + (params->wo * params->ho) / 4 + ((params->roi_freeze.y + amg_video_freeze_algo->line_offset) / 2) * (params->wo / 2) + params->roi_freeze.x / 2;
-        ippiNormDiff_L2_8u_C1R(params->in_image + offset_freeze_u, (params->wo / 2) * amg_video_freeze_algo->line_distance_uv, params->old_image + offset_freeze_u,
-                (params->wo / 2) * amg_video_freeze_algo->line_distance_uv, roi_size_freeze_uv, &l2_diff_u);
+        ippiNormDiff_L2_8u_C1R_Enhanced(params->in_image + offset_freeze_u, (params->wo / 2) * amg_video_freeze_algo->line_distance_uv, params->old_image + offset_freeze_u,
+                (params->wo / 2) * amg_video_freeze_algo->line_distance_uv, roi_size_freeze_uv, &l2_diff_u, &error_code);
         rmse_freeze_u = l2_diff_u / (denom_freeze_uv);
 
-        ippiNormDiff_L2_8u_C1R(params->in_image + offset_freeze_v, (params->wo / 2) * amg_video_freeze_algo->line_distance_uv, params->old_image + offset_freeze_v,
-                (params->wo / 2) * amg_video_freeze_algo->line_distance_uv, roi_size_freeze_uv, &l2_diff_v);
+        ippiNormDiff_L2_8u_C1R_Enhanced(params->in_image + offset_freeze_v, (params->wo / 2) * amg_video_freeze_algo->line_distance_uv, params->old_image + offset_freeze_v,
+                (params->wo / 2) * amg_video_freeze_algo->line_distance_uv, roi_size_freeze_uv, &l2_diff_v, &error_code);
         rmse_freeze_v = l2_diff_v / (denom_freeze_uv);
     }
     if (!amg_video_freeze_algo->silent)

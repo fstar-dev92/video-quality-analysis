@@ -5,14 +5,14 @@ project (FREEZE_DETECT_UT C CXX)
 if(AMAGI_MIMAS)
     #message(WARNING "amagi_mimas is being used")
     include("../../../../../common/helios.cmake")
-    add_definitions(-DAMG_MIMAS)
+    #add_definitions(-DAMG_MIMAS)
     include_directories(${FREEZE_DETECT_UT_SOURCE_DIR}/../../inc/)
 else()
     #message(WARNING "amagi_mimas is not being used")
     SET (INTEL_IPP /opt/intel/oneapi/ipp/2021.2.0/)
     SET (INTEL_IPP_INCLUDE_DIRS ${INTEL_IPP}/include)
     SET (INTEL_IPP_LIBRARY_DIRS ${INTEL_IPP}/lib/intel64)
-    SET (INTEL_IPP_LIBRARIES ippi ipps ippcore ippvm ippcc ippcv)
+    #SET (INTEL_IPP_LIBRARIES ippi ipps ippcore ippvm ippcc ippcv)
     INCLUDE_DIRECTORIES (SYSTEM ${INTEL_IPP_INCLUDE_DIRS})
     LINK_DIRECTORIES (${INTEL_IPP_LIBRARY_DIRS})
 endif(AMAGI_MIMAS)
@@ -24,6 +24,7 @@ add_executable(amg_video_freeze_detect_ut_fsm
     ${FREEZE_DETECT_UT_SOURCE_DIR}/../src/amg_video_freeze_detect.c
     ${FREEZE_DETECT_UT_SOURCE_DIR}/../src/amg_video_freeze_detect_fsm.c
     ${FREEZE_DETECT_UT_SOURCE_DIR}/../src/amg_video_freeze_detect_algo.c
+    ${FREEZE_DETECT_UT_SOURCE_DIR}/../src/ipp_enhanced.c
     ${FREEZE_DETECT_UT_SOURCE_DIR}/amg_video_freeze_detect_ut_fsm.c
     )
 
@@ -38,6 +39,7 @@ INSTALL (TARGETS amg_video_freeze_detect_ut_fsm
 
 add_executable(amg_video_black_detect_slice_algo_ut
     ${FREEZE_DETECT_UT_SOURCE_DIR}/../src/amg_video_black_detect_slice_algo.c
+    ${FREEZE_DETECT_UT_SOURCE_DIR}/../src/ipp_enhanced.c
     ${FREEZE_DETECT_UT_SOURCE_DIR}/amg_video_black_detect_slice_algo_ut.c
     )
 
@@ -53,6 +55,7 @@ INSTALL (TARGETS amg_video_black_detect_slice_algo_ut
 
 add_executable(amg_video_black_detect_algo_ut
     ${FREEZE_DETECT_UT_SOURCE_DIR}/../src/amg_video_black_detect_algo.c
+    ${FREEZE_DETECT_UT_SOURCE_DIR}/../src/ipp_enhanced.c
     ${FREEZE_DETECT_UT_SOURCE_DIR}/amg_video_black_detect_algo_ut.c
     )
 
@@ -87,6 +90,7 @@ add_executable(amg_video_black_detect_ut_fsm
     ${FREEZE_DETECT_UT_SOURCE_DIR}/../src/amg_video_black_detect.c
     ${FREEZE_DETECT_UT_SOURCE_DIR}/../src/amg_video_black_detect_algo.c
     ${FREEZE_DETECT_UT_SOURCE_DIR}/../src/amg_video_black_detect_slice_algo.c
+    ${FREEZE_DETECT_UT_SOURCE_DIR}/../src/ipp_enhanced.c
     ${FREEZE_DETECT_UT_SOURCE_DIR}/amg_video_black_detect_ut_fsm.c
     )
 
