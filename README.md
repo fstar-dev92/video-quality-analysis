@@ -22,16 +22,6 @@
 
 
 
-## Bageera Reviewers
-
-Contributors helping to review/merge pull requests:
-
-- [@BVS](https://github.com/bvs-amagi)
-- [@Swapnil](https://github.com/swapnild18)
-- [@Hamza](https://github.com/hamza-u)
-- [@Islam]()
-
-
 ## How Bageera works
 
 Bageera is a project which provides following functionalities :
