@@ -1,4 +1,3 @@
-<h1 align="center">BAGEERA</h1>
 <h2 align="center">Black and Freeze detection</h2>
 
 <h4 align="center">
@@ -22,9 +21,9 @@
 
 
 
-## How Bageera works
+## How to works
 
-Bageera is a project which provides following functionalities :
+This is a project which provides following functionalities :
 * Freeze detection in a video 
     * Current frame is compared with the previous frame to check whether they are similar.
     * If similarity persists for a certain period of time (freeze_threshold) then the video clip is considered as freeze.
@@ -34,7 +33,7 @@ Bageera is a project which provides following functionalities :
     * If black persists for a certain period of time (black_threshold) then the video clip is considered as black.
     * Report generated contains the details of video_file_name, Start pts (ns), End pts (ns), Duration (ms).
 
-## Optimization of Bageera
+## Optimization
 
 * Skip_line parameter is used to skip few lines for each horizontal line processed in each frame to reduce computation.
 * ROI (Region Of Interest) is set to full screen.
@@ -46,10 +45,9 @@ Bageera is a project which provides following functionalities :
 ## How to run locally
 
 1. Clone this repository 
-2. Go to Bageera directory
-3. Create docker image using following command
+2. Create docker image using following command
 	`docker build . -t <image_name>`
-4. Run the following command to create reports freeze or black detection for video files in your test folder
+3. Run the following command to create reports freeze or black detection for video files in your test folder
 	
 	`docker run -v <test_directory>:/data/input -v <reports_directory>:/data/output -it --rm <image_name> ./ut/<freeze_detect_fsm.sh/black_detect.sh> /data/input /data/output <black/freeze threshold>`
 	* test_directory - absolute path of directory with videos to be checked
@@ -63,7 +61,7 @@ Bageera is a project which provides following functionalities :
 	
 ## Getting started
 
-Below are few commands to generate reports on videos in bageera/ut/test folder
+Below are few commands to generate reports on videos in ut/test folder
 
 * #create a folder named "output" in the current working directory to generate reports in it.
 * docker build . -t sample_image 
